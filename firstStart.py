@@ -1,6 +1,6 @@
 import os
 import time
-from subprocess import Popen
+import subprocess
 import requests
 import re
 import sys
@@ -15,7 +15,7 @@ def getMyIP():
         pass
     return 0
 
-requests.get('http://127.0.0.1:5000/api/addip/'+getMyIP())
+requests.get('http://lerts91.fvds.ru/api/addip/'+getMyIP())
 
 try:
     file_ver = open('file_ver.info', 'r')
@@ -27,7 +27,7 @@ file_ver.close()
 
 sendCount = 0
 def CreateDevice():
-    resp = requests.post("http://127.0.0.1:5000/api/device")
+    resp = requests.post("http://lerts91.fvds.ru/api/device")
     if (resp.status_code == 500) and (sendCount < 20):
         time.sleep(5*sendCount)
         CreateDevice()
@@ -49,4 +49,6 @@ for line in f:
 #        data = CreateDevice()
         data['id'] = 2
         CreateConfig(data['id'])
-#        Popen(["python", "update.py"])
+        print("start update")
+        codeCall = subprocess.call(["python", "update.py"])
+        print(codeCall)
