@@ -51,4 +51,6 @@ for line in f:
         CreateConfig(data['id'])
         print("start update")
         codeCall = subprocess.call(["python", "update.py"])
+        if codeCall == 0:
+            subprocess.call(["./install.sh"])
         print(codeCall)
