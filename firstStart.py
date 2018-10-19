@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 import time
 import subprocess
@@ -15,7 +16,7 @@ def getMyIP():
         pass
     return 0
 
-requests.get('http://lerts91.fvds.ru/api/addip/'+getMyIP())
+#requests.get('http://lerts91.fvds.ru/api/addip/'+getMyIP())
 
 try:
     file_ver = open('file_ver.info', 'r')
@@ -36,7 +37,7 @@ def CreateDevice():
         return data
 
 def CreateConfig(id):
-    conf_file = open('latest/conf.h', 'w')
+    conf_file = open('/home/swpi/growOrange/latest/conf.h', 'w')
     txt = '#define ID '+ str(data['id']) + '\r\n'+'#define HUMIDITY_MIN1 200\r\n#define HUMIDITY_MAX1 1050\r\n#define HUMIDITY_MIN2 200\r\n#define HUMIDITY_MAX2 1050\r\n#define SEND_DATA_TIME 2000\r\n#define TIME_ON_LED 100000\r\n'
     conf_file.write(txt)
     conf_file.close()
@@ -50,7 +51,9 @@ for line in f:
         data['id'] = 2
         CreateConfig(data['id'])
         print("start update")
-        codeCall = subprocess.call(["python", "update.py"])
+        print(os.path.abspath(os.curdir))
+        time.sleep(60)
+        codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
         if codeCall == 0:
-            subprocess.call(["./install.sh"])
+            subprocess.call(["/home/swpi/growOrange/install.sh"])
         print(codeCall)
