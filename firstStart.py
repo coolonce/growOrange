@@ -79,10 +79,11 @@ def start():
             print(codeCall)
         else:
             print('Upload new script')
-            time.sleep(60)
+#            time.sleep(60)
             codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
                 subprocess.call(["/home/swpi/growOrange/install.sh"])
+                subprocess.call(["python","/home/swpi/growOrange/listner.py"])
 
 
 if __name__ == "__main__":
