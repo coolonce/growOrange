@@ -9,11 +9,11 @@ from daemon import runner
 
 class App():
     def __init__(self):
-        self.stdin_path = '/dev/ttyUSB0'
-        self.stdout_path = '/dev/null'
-        self.stderr_path = '/dev/null'
-        self.pidfile_path = '/tmp/foo.pid'
-        self.pidfile_ptimeout = 5
+        self.stdin_path = '/dev/null'
+        self.stdout_path = '/home/swpi/growOrange/logListen.txt'
+        self.stderr_path = '/home/swpi/growOrange/logListen.txt'
+        self.pidfile_path = '/tmp/listingSerial.pid'
+        self.pidfile_timeout = 4
     def run(self):
         while True:
             time.sleep(4)
@@ -25,7 +25,7 @@ class App():
             print(out)
             if out != '':
                 http = urllib3.PoolManager()
-#	            r = http.request('POST', 'http://lerts91.fvds.ru/api/sendData',body=out, headers = {'Content-Type':'application/json'})
+                r = http.request('POST', 'http://lerts91.fvds.ru/api/sendData',body=out, headers = {'Content-Type':'application/json'})
 #                print(r.data)
 
 
