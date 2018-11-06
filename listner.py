@@ -15,6 +15,7 @@ class App():
         self.stderr_path = '/home/swpi/growOrange/logListenErr.txt'
         self.pidfile_path = '/tmp/listingSerial.pid'
         self.pidfile_timeout = 4
+        print("StartALOOOOOOOO SOOOOQAAA")
     def run(self):
         while True:
             time.sleep(4)
@@ -24,12 +25,17 @@ class App():
  #           sio.flush()
  #           out = sio.readline()
  #           print(out)
-            out = sys.stdin.readlines()
+            sys.stdin = open('/dev/ttyUSB0')
+#            out = sys.stdin.readline()
+            out = raw_input()
+ #           time.sleep(1)
             print(out)
             if out != '':
                 http = urllib3.PoolManager()
                 r = http.request('POST', 'http://lerts91.fvds.ru/api/sendData',body=out, headers = {'Content-Type':'application/json'})
                 print(r.data)
+            else:
+                 print("empty data")
 
 
 app = App()
