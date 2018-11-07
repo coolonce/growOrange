@@ -1,11 +1,14 @@
 import requests
 import shutil
+import subprocess
 
-url = 'http://127.0.0.1:5000/api/latest'
+print("start download latest")
+url = 'http://lerts91.fvds.ru/api/latest'
 response = requests.get(url, stream=True)
-with open('latest/latest.ino', 'wb') as out_file:
+with open('/home/swpi/growOrange/latest/latest.ino', 'wba+') as out_file:
     shutil.copyfileobj(response.raw, out_file)
+    print('End download\r\nstart upload')
 del response
 
-print("download PO")
+
 
