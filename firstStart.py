@@ -20,9 +20,9 @@ def getMyIP():
 
 
 try:
-    file_ver = open('file_ver.info', 'r')
+    file_ver = open('/home/swpi/growOrange/file_ver.info', 'r')
 except Exception:
-    file_ver = open('file_ver.info', 'w')
+    file_ver = open('/home/swpi/growOrange/file_ver.info', 'w')
     file_ver.write('0')
 
 file_ver.close()
@@ -40,7 +40,7 @@ def CreateDevice():
 
 def CreateConfig(id):
     conf_file = open('/home/swpi/growOrange/latest/conf.h', 'w')
-    txt = '#define ID '+ str(id) + '\r\n'+'#define HUMIDITY_MIN1 200\r\n#define HUMIDITY_MAX1 1050\r\n#define HUMIDITY_MIN2 200\r\n#define HUMIDITY_MAX2 1050\r\n#define SEND_DATA_TIME 2000\r\n#define TIME_ON_LED 60\r\n'
+    txt = '#define ID '+ str(id) + '\r\n'+'#define HUMIDITY_MIN1 200\r\n#define HUMIDITY_MAX1 650\r\n#define HUMIDITY_MIN2 200\r\n#define HUMIDITY_MAX2 650\r\n#define SEND_DATA_TIME 2000\r\n#define TIME_ON_LED 43200000\r\n'
     conf_file.write(txt)
     conf_file.close()
 
@@ -51,7 +51,7 @@ def checknetwork():
     accept = True
     while(accept):        
         print("check network")
-        time.sleep(10)
+        time.sleep(5)
         try:
             socket.gethostbyaddr('www.yandex.ru')
             accept = False
@@ -61,16 +61,17 @@ def checknetwork():
 
 
 
-f = open('file_ver.info', 'rw+a+')
+f = open('/home/swpi/growOrange/file_ver.info', 'rw+a+')
 def start():
     for line in f:
+        print(line)
         if line == '0':
             data = {}
             data = CreateDevice()
             CreateConfig(data['id'])
             print("start update")
             print(os.path.abspath(os.curdir))
-            time.sleep(60)
+#            time.sleep(60)
             requests.get('http://lerts91.fvds.ru/api/addip/'+getMyIP())
             codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
@@ -78,10 +79,10 @@ def start():
             f.write(data['version'])
             print(codeCall)
         else:
-            print('Upload new script')
-            time.sleep(60)
+            print('Upload new script else')
+#            time.sleep(60)
 #test
-            CreateConfig(2)
+            CreateConfig(28)
             codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
                 subprocess.call(["/home/swpi/growOrange/install.sh"])
