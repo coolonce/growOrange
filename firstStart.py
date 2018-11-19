@@ -79,10 +79,17 @@ def start():
             f.write(data['version'])
             print(codeCall)
         else:
+<<<<<<< HEAD
             print('Upload new script else')
 #            time.sleep(60)
 #test
             CreateConfig(28)
+=======
+            print('Upload new script')
+#            time.sleep(60)
+#test
+            CreateConfig(27)
+>>>>>>> 5877bb62f73239db13ed32f6afb342a180862379
             codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
                 subprocess.call(["/home/swpi/growOrange/install.sh"])
