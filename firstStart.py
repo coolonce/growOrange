@@ -49,7 +49,7 @@ import socket
 countDelay = 0
 def checknetwork():
     accept = True
-    while(accept):        
+    while(accept):
         print("check network")
         time.sleep(5)
         try:
@@ -75,21 +75,13 @@ def start():
             requests.get('http://lerts91.fvds.ru/api/addip/'+getMyIP())
             codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
-                subprocess.call(["/home/swpi/growOrange/install.sh"])        
+                subprocess.call(["/home/swpi/growOrange/install.sh"])
             f.write(data['version'])
             print(codeCall)
         else:
-<<<<<<< HEAD
             print('Upload new script else')
 #            time.sleep(60)
-#test
             CreateConfig(28)
-=======
-            print('Upload new script')
-#            time.sleep(60)
-#test
-            CreateConfig(27)
->>>>>>> 5877bb62f73239db13ed32f6afb342a180862379
             codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
                 subprocess.call(["/home/swpi/growOrange/install.sh"])
