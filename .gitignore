@@ -1,3 +1,4 @@
+log*
 # Byte-compiled / optimized / DLL files
 *.h
 *.ino
@@ -5,7 +6,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+*log*
 # C extensions
 *.so
 
