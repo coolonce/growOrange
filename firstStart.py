@@ -73,7 +73,7 @@ def start():
             print(os.path.abspath(os.curdir))
 #            time.sleep(60)
             requests.get('http://lerts91.fvds.ru/api/addip/'+getMyIP())
-            codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
+#            codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
                 subprocess.call(["/home/swpi/growOrange/install.sh"])
             f.write(data['version'])
@@ -81,8 +81,8 @@ def start():
         else:
             print('Upload new script else')
 #            time.sleep(60)
-            CreateConfig(28)
-            codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
+#            CreateConfig(28)
+ #           codeCall = subprocess.call(["python", "/home/swpi/growOrange/update.py"])
             if codeCall == 0:
                 subprocess.call(["/home/swpi/growOrange/install.sh"])
 
