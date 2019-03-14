@@ -26,13 +26,17 @@ class App():
  #           out = sio.readline()
  #           print(out)
             sys.stdin = open('/dev/ttyUSB0')
-#            out = sys.stdin.readline()
-            out = raw_input()
+#            out = sys.stdin.readline()            
+            try:
+                out = raw_input()
+                sys.stdin.close()
+            except EOFError:
+                continue
  #           time.sleep(1)
             print(out)
             if out != '':
                 http = urllib3.PoolManager()
-                r = http.request('POST', 'http://lerts91.fvds.ru/api/sendData',body=out, headers = {'Content-Type':'application/json'})
+                r = http.request('POST', '83.220.169.215/api/sendData',body=out, headers = {'Content-Type':'application/json'})
                 print(r.data)
             else:
                  print("empty data")
