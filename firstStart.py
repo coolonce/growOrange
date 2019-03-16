@@ -41,6 +41,9 @@ def CreateDevice():
 def CreateConfig(id):
     conf_file = open('/home/swpi/growOrange/latest/conf.h', 'w')
     txt = '#define ID '+ str(id) + '\r\n'+'#define HUMIDITY_MIN1 200\r\n#define HUMIDITY_MAX1 650\r\n#define HUMIDITY_MIN2 200\r\n#define HUMIDITY_MAX2 650\r\n#define SEND_DATA_TIME 2000\r\n#define TIME_ON_LED 43200000\r\n'
+    file_ver = open('/home/swpi/growOrange/file_ver.info', 'w')
+    file_ver.write(str(id))
+    file_ver.close()
     conf_file.write(txt)
     conf_file.close()
 
